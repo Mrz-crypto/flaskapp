@@ -14,8 +14,8 @@ def login():
     return authcontroller.login()
 
 
-@auth_bp.route("/register", methods=["GET", "POST"])
-def register():
+@auth_bp.route("/register", methods=["GET", "POST"], endpoint="register")
+def register_user():
     return authcontroller.register()
 
 
@@ -29,5 +29,5 @@ def logout():
     return authcontroller.logout()
 
 
-def register():
+def register_blueprint():
     return auth_bp

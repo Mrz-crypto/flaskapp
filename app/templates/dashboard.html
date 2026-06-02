@@ -28,7 +28,7 @@
 
 {% if is_admin %}
 <section class="panel">
-    <h2>All users — view &amp; update</h2>
+    <h2>All users - view &amp; update</h2>
     {% if users %}
     <div class="table-wrap">
         <table class="orders-table">
@@ -80,7 +80,7 @@
             <label for="user_id">Customer</label>
             <select id="user_id" name="user_id" required>
                 {% for u in users %}
-                <option value="{{ u.id }}">{{ u.name }} — {{ u.email }}</option>
+                <option value="{{ u.id }}">{{ u.name }} - {{ u.email }}</option>
                 {% endfor %}
             </select>
         </div>

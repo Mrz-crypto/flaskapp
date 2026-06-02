@@ -10,8 +10,8 @@ def create_app():
     with app.app_context():
         create_tables()
 
-    from app.routes.authroutes import register as register_auth
-    from app.routes.orderroutes import register as register_orders
+    from app.routes.authroutes import register_blueprint as register_auth
+    from app.routes.orderroutes import register_blueprint as register_orders
 
     app.register_blueprint(register_auth())
     app.register_blueprint(register_orders())
