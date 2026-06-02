@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<section class="dashboard-header">
+    <div>
+        <h1>Dashboard</h1>
+        <p class="subtitle">Welcome back, {{ user_name }}.</p>
+    </div>
+    <span class="role-badge role-{{ user_role }}">{{ user_role|capitalize }}</span>
+</section>
+
+<section class="stats-row">
+    <div class="stat-card">
+        <span class="stat-label">Total orders</span>
+        <span class="stat-value">{{ orders|length }}</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-label">Pending</span>
+        <span class="stat-value">{{ orders|selectattr('status', 'equalto', 'pending')|list|length }}</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-label">Shipped</span>
+        <span class="stat-value">{{ orders|selectattr('status', 'equalto', 'shipped')|list|length }}</span>
+    </div>
+</section>
+
+{% if is_admin %}
+<section class="panel">
+    <h2>All users — view &amp; update</h2>
+    {% if users %}
+    <div class="table-wrap">
+        <table class="orders-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for u in users %}
+                <tr>
+                    <td>#{{ u.id }}</td>
+                    <td colspan="4">
+                        <form method="post" class="inline-edit-form">
+                            <input type="hidden" name="action" value="update_user">
+                            <input type="hidden" name="user_id" value="{{ u.id }}">
+                            <div class="inline-fields">
+                                <input type="text" name="name" value="{{ u.name }}" required aria-label="Name for user {{ u.id }}">
+                                <input type="email" name="email" value="{{ u.email }}" required aria-label="Email for user {{ u.id }}">
+                                <select name="role" aria-label="Role for user {{ u.id }}">
+                                    <option value="user" {% if u.role == 'user' %}selected{% endif %}>User</option>
+                                    <option value="admin" {% if u.role == 'admin' %}selected{% endif %}>Admin</option>
+                                </select>
+                                <button type="submit" class="btn-small">Save user</button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p class="empty-state">No users found.</p>
+    {% endif %}
+</section>
+{% endif %}
+
+<section class="panel">
+    <h2>{% if is_admin %}Add order for a customer{% else %}Add my order{% endif %}</h2>
+    <form method="post" class="order-form">
+        <input type="hidden" name="action" value="add_order">
+        {% if is_admin and users %}
+        <div>
+            <label for="user_id">Customer</label>
+            <select id="user_id" name="user_id" required>
+                {% for u in users %}
+                <option value="{{ u.id }}">{{ u.name }} — {{ u.email }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        {% endif %}
+        <div class="form-row">
+            <div>
+                <label for="item">Item</label>
+                <input type="text" id="item" name="item" placeholder="e.g. Widget" required>
+            </div>
+            <div>
+                <label for="quantity">Quantity</label>
+                <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+            </div>
+        </div>
+        <button type="submit">Add order</button>
+    </form>
+</section>
+
+<section class="panel">
+    <h2>{% if is_admin %}All customer orders{% else %}My orders{% endif %}</h2>
+    {% if orders %}
+    <div class="table-wrap">
+        <table class="orders-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    {% if is_admin %}<th>Customer</th>{% endif %}
+                    <th>Item</th>
+                    <th>Qty</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>#{{ order.id }}</td>
+                    {% if is_admin %}
+                    <td>
+                        <strong>{{ order.user_name }}</strong><br>
+                        <span class="muted">{{ order.user_email }}</span>
+                    </td>
+                    {% endif %}
+                    <td colspan="4">
+                        <form method="post" class="inline-edit-form">
+                            <input type="hidden" name="action" value="update_order">
+                            <input type="hidden" name="order_id" value="{{ order.id }}">
+                            <div class="inline-fields">
+                                <input type="text" name="item" value="{{ order.item }}" required aria-label="Item for order {{ order.id }}">
+                                <input type="number" name="quantity" value="{{ order.quantity }}" min="1" required aria-label="Quantity for order {{ order.id }}">
+                                <select name="status" aria-label="Status for order {{ order.id }}">
+                                    <option value="pending" {% if order.status == 'pending' %}selected{% endif %}>Pending</option>
+                                    <option value="shipped" {% if order.status == 'shipped' %}selected{% endif %}>Shipped</option>
+                                </select>
+                                <button type="submit" class="btn-small">Save order</button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p class="empty-state">No orders yet.</p>
+    {% endif %}
+</section>
+{% endblock %}
