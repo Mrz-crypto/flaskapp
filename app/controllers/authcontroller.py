@@ -1,7 +1,8 @@
+import logging
 from flask import render_template, request, redirect, url_for, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.database import get_connection
-from app.controllers.aurth import login_required
+from app.controllers.auth import login_required
 from app.controllers.ordercontroller import (
     get_all_orders,
     get_all_users,
@@ -11,6 +12,8 @@ from app.controllers.ordercontroller import (
     update_order_details,
     update_user,
 )
+
+logger = logging.getLogger(__name__)
 
 
 def home():
@@ -29,11 +32,13 @@ def login():
 
         if not email or not password:
             flash("Email and password are required.", "error")
+            logger.warning("Login attempt with missing email or password")
             return render_template("login.html")
 
         conn = get_connection()
         if conn is None:
             flash("Database connection failed. Try again later.", "error")
+            logger.error("Login failed: Database connection error")
             return render_template("login.html")
 
         cursor = conn.cursor()
@@ -50,8 +55,10 @@ def login():
             session["user_name"] = user["name"]
             session["user_role"] = user["role"]
             flash("Login successful.", "success")
+            logger.info(f"User logged in: {email} (ID: {user['id']})")
             return redirect(url_for("auth.dashboard"))
 
+        logger.warning(f"Failed login attempt for email: {email}")
         flash("Invalid email or password.", "error")
 
     return render_template("login.html")
@@ -68,17 +75,22 @@ def register():
 
         if not name or not email or not password:
             flash("All fields are required.", "error")
+            logger.warning("Registration attempt with missing fields")
             return render_template("register.html")
+
         if len(name) > 100:
             flash("Name must be less than 100 characters.", "error")
             return render_template("register.html")
+
         if len(password) < 6:
             flash("Password must be at least 6 characters.", "error")
+            logger.warning(f"Registration attempt with weak password for: {email}")
             return render_template("register.html")
 
         conn = get_connection()
         if conn is None:
             flash("Database connection failed. Try again later.", "error")
+            logger.error("Registration failed: Database connection error")
             return render_template("register.html")
 
         cursor = conn.cursor()
@@ -87,6 +99,7 @@ def register():
             flash("Email already registered.", "error")
             cursor.close()
             conn.close()
+            logger.warning(f"Registration attempt with existing email: {email}")
             return render_template("register.html")
 
         hashed_password = generate_password_hash(password)
@@ -98,6 +111,7 @@ def register():
         cursor.close()
         conn.close()
         flash("Registration successful. Please log in.", "success")
+        logger.info(f"New user registered: {email}")
         return redirect(url_for("auth.login"))
 
     return render_template("register.html")
@@ -185,6 +199,8 @@ def dashboard():
 
 
 def logout():
+    user_name = session.get("user_name", "Unknown")
     session.clear()
     flash("You have been logged out.", "success")
+    logger.info(f"User logged out: {user_name}")
     return redirect(url_for("auth.login"))
