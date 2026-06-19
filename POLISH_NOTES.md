@@ -14,3 +14,4 @@
 - 12. Recorded that order statuses remain pending and shipped.
 - 13. Documented that no new runtime language was introduced.
 - 14. Noted that Flask remains the only web framework in use.
+- 15. Captured that app behavior was kept stable during polish.
