@@ -4,3 +4,4 @@
 - 02. Noted that authentication helpers now live in the top-level app auth module.
 - 03. Recorded the order controller duplicate-removal cleanup.
 - 04. Captured the schema alignment for the database setup script.
+- 05. Documented the default admin account used by startup seeding.
