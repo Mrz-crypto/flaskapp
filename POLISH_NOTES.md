@@ -6,3 +6,4 @@
 - 04. Captured the schema alignment for the database setup script.
 - 05. Documented the default admin account used by startup seeding.
 - 06. Noted that README examples now use plain ASCII characters.
+- 07. Recorded the pytest file naming cleanup for test discovery.
