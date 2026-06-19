@@ -29,3 +29,4 @@
 - 27. Recorded the admin user edit dashboard flow.
 - 28. Recorded the user order dashboard flow.
 - 29. Documented the registration validation boundaries.
+- 30. Documented the login validation boundaries.
