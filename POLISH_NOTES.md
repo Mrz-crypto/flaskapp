@@ -21,3 +21,4 @@
 - 19. Documented route coverage for order API writes.
 - 20. Recorded the production reminder to rotate default credentials.
 - 21. Noted that sensitive values belong in environment variables.
+- 22. Captured the MySQL table indexes included in setup SQL.
