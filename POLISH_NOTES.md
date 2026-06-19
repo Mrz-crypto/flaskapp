@@ -10,3 +10,4 @@
 - 08. Captured the compile check used before publishing changes.
 - 09. Captured the passing auth redirect test result.
 - 10. Documented the environment-variable configuration path.
+- 11. Noted the MySQL database name expected by local setup.
