@@ -1,203 +1,135 @@
 # Flask Order Management Application
 
-A Flask-based web application for managing users, orders, and authentication with role-based access control (Admin/User).
+A Flask web application for user authentication, role-based dashboards, and basic order management backed by MySQL.
 
 ## Features
 
-- **User Authentication**: Secure login and registration with password hashing
-- **Role-Based Access**: Admin and regular user roles
-- **Order Management**: Create, read, update, and delete orders
-- **Database Integration**: MySQL database with proper schema
-- **Error Handling**: Comprehensive error pages (403, 404, 500)
-- **Logging**: Activity and error logging
+- User registration and login with hashed passwords
+- Admin and user roles
+- Dashboard-based order creation and updates
+- JSON order API for authenticated users
+- MySQL schema initialization at startup
+- Error pages for 403, 404, and 500 responses
+- Environment-based configuration
+- Console logging for key app events
 
-## Prerequisites
+## Requirements
 
 - Python 3.8+
 - MySQL Server
-- pip (Python package manager)
+- pip
 
-## Installation
+## Setup
 
-### 1. Clone the Repository
-```bash
-git clone <repository-url>
-cd flaskapp
-```
+1. Create and activate a virtual environment.
 
-### 2. Create Virtual Environment
 ```bash
 python -m venv venv
-# On Windows
 venv\Scripts\activate
-# On macOS/Linux
-source venv/bin/activate
 ```
 
-### 3. Install Dependencies
+2. Install dependencies.
+
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Configure Environment
+3. Create the database.
 
-Copy `.env.example` to `.env` and update the values:
-```bash
-cp .env.example .env
-```
-
-Edit `.env` with your database credentials:
-```
-FLASK_ENV=development
-FLASK_DEBUG=False
-SECRET_KEY=your-secret-key-here-change-in-production
-MYSQL_HOST=localhost
-MYSQL_USER=root
-MYSQL_PASSWORD=root
-MYSQL_DATABASE=blackeye
-```
-
-### 5. Create Database
 ```sql
 CREATE DATABASE blackeye;
 ```
 
-### 6. Run the Application
+4. Copy the environment template and update values.
+
+```bash
+copy .env.example .env
+```
+
+5. Run the application.
+
 ```bash
 python run.py
 ```
 
-The app will be available at `http://localhost:5000`
+The app runs at `http://localhost:5000`.
 
-## Default Credentials
+## Default Admin
 
-- **Email**: admin@admin.com
-- **Password**: admin123
+- Email: `admin@blackeye.com`
+- Password: `admin123`
 
-⚠️ **Change these credentials immediately in production!**
+Change the default password before using the app outside local development.
 
 ## Project Structure
 
-```
+```text
 flaskapp/
-├── app/
-│   ├── __init__.py           # Flask app factory
-│   ├── database.py           # Database connection & initialization
-│   ├── controllers/
-│   │   ├── auth.py           # Authentication decorators
-│   │   ├── authcontroller.py # Auth logic (login, register, dashboard)
-│   │   └── ordercontroller.py # Order management logic
-│   ├── routes/
-│   │   ├── authroutes.py     # Auth endpoints
-│   │   └── orderroutes.py    # Order API endpoints
-│   ├── static/
-│   │   ├── css/
-│   │   │   └── style.css
-│   │   └── style2.js
-│   └── templates/
-│       ├── base.html
-│       ├── login.html
-│       ├── register.html
-│       ├── dashboard.html
-│       ├── 403.html
-│       ├── 404.html
-│       └── 500.html
-├── config.py                 # Configuration (uses environment variables)
-├── run.py                    # Entry point
-├── requirements.txt          # Python dependencies
-├── .env.example             # Environment variables template
-├── .gitignore               # Git ignore rules
-└── README.md                # This file
+|-- app/
+|   |-- __init__.py
+|   |-- auth.py
+|   |-- database.py
+|   |-- controllers/
+|   |   |-- authcontroller.py
+|   |   `-- ordercontroller.py
+|   |-- routes/
+|   |   |-- authroutes.py
+|   |   `-- orderroutes.py
+|   |-- static/
+|   |   `-- css/style.css
+|   `-- templates/
+|       |-- base.html
+|       |-- login.html
+|       |-- register.html
+|       |-- dashboard.html
+|       |-- 403.html
+|       |-- 404.html
+|       `-- 500.html
+|-- config.py
+|-- run.py
+|-- requirements.txt
+|-- requirements-dev.txt
+|-- setup_database.sql
+`-- README.md
 ```
 
-## API Endpoints
+## Routes
 
-### Authentication
-- `GET /` - Home (redirects to login/dashboard)
-- `GET/POST /login` - User login
-- `GET/POST /register` - User registration
-- `GET /logout` - User logout
-- `GET/POST /dashboard` - User dashboard
-
-### Orders (with authentication)
-- `GET /orders/` - List all orders
-- `GET /orders/<id>` - Get specific order
-- `POST /orders/` - Create order
-- `PUT /orders/<id>` - Update order
-- `DELETE /orders/<id>` - Delete order
+- `GET /` redirects users to login or dashboard
+- `GET, POST /login` handles login
+- `GET, POST /register` handles registration
+- `GET, POST /dashboard` shows and updates dashboard data
+- `GET /logout` clears the session
+- `GET /orders/` lists visible orders
+- `GET /orders/<id>` shows one visible order
+- `POST /orders/` creates an order
+- `PUT /orders/<id>` updates an order
+- `DELETE /orders/<id>` deletes an order
 
 ## Configuration
 
-All sensitive settings are managed via environment variables in `.env`:
+Settings are read from environment variables:
 
-- `FLASK_ENV`: Application environment (development/production)
-- `FLASK_DEBUG`: Debug mode (True/False)
-- `SECRET_KEY`: Session encryption key (change in production!)
-- `MYSQL_HOST`: Database host
-- `MYSQL_USER`: Database user
-- `MYSQL_PASSWORD`: Database password
-- `MYSQL_DATABASE`: Database name
+- `FLASK_ENV`
+- `FLASK_DEBUG`
+- `SECRET_KEY`
+- `MYSQL_HOST`
+- `MYSQL_USER`
+- `MYSQL_PASSWORD`
+- `MYSQL_DATABASE`
 
-## Security Notes
+## Development Checks
 
-🔒 **Important for Production**:
-1. Change `SECRET_KEY` to a secure random value
-2. Use strong database passwords
-3. Set `FLASK_DEBUG=False` in production
-4. Use HTTPS only
-5. Implement CSRF protection
-6. Set secure session cookies
-7. Validate and sanitize all user inputs
-8. Use environment variables for all secrets
-9. Implement rate limiting
-10. Add CORS headers if needed
-
-## Logging
-
-Application logs are displayed in the console and include:
-- Database connection status
-- User login/logout events
-- Failed authentication attempts
-- Database errors
-- Server errors
-
-## Error Handling
-
-The application includes error handlers for:
-- **403 Forbidden** - Access denied
-- **404 Not Found** - Page not found
-- **500 Internal Server Error** - Server error
-
-## Development
-
-### Running in Debug Mode
 ```bash
-FLASK_DEBUG=True python run.py
+python -m compileall app run.py config.py
+pytest
 ```
 
-### Database Initialization
-Tables are automatically created on application startup:
-- `users` - User accounts
-- `orders` - User orders
+## Production Notes
 
-## Troubleshooting
-
-### Database Connection Failed
-- Ensure MySQL is running
-- Verify credentials in `.env`
-- Check database exists
-
-### Port Already in Use
-- Change port in `run.py` or use: `python run.py -p 5001`
-
-### Module Import Errors
-- Ensure virtual environment is activated
-- Run `pip install -r requirements.txt`
-
-## License
-
-[Your License Here]
-
-## Support
-
-For issues or questions, please contact [Your Contact Info].
+- Use a strong `SECRET_KEY`
+- Set `FLASK_DEBUG=False`
+- Change the default admin password
+- Use HTTPS behind a production web server
+- Back up the MySQL database regularly
+- Keep credentials in environment variables, not source files

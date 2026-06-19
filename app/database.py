@@ -1,8 +1,9 @@
 import logging
+
 import pymysql  # type: ignore[import-untyped]
+
 import config
 
-# Configure logging
 logger = logging.getLogger(__name__)
 
 
@@ -55,18 +56,29 @@ def create_tables():
         """)
         logger.info("Orders table created/verified")
 
-        cursor.execute("SELECT * FROM users WHERE email = %s", ("admin@admin.com",))
+        cursor.execute("SELECT * FROM users WHERE email = %s", ("admin@blackeye.com",))
         admin = cursor.fetchone()
         if not admin:
             from werkzeug.security import generate_password_hash
 
             cursor.execute(
-                "INSERT INTO users (name, email, password, role) VALUES (%s, %s, %s, %s)",
-                ("Admin", "admin@admin.com", generate_password_hash("admin123"), "admin"),
+                """
+                INSERT INTO users (name, email, password, role)
+                VALUES (%s, %s, %s, %s)
+                """,
+                (
+                    "Admin",
+                    "admin@blackeye.com",
+                    generate_password_hash("admin123"),
+                    "admin",
+                ),
             )
             conn.commit()
             logger.info("Admin user created")
-            cursor.execute("SELECT id FROM users WHERE email = %s", ("admin@admin.com",))
+            cursor.execute(
+                "SELECT id FROM users WHERE email = %s",
+                ("admin@blackeye.com",),
+            )
             admin = cursor.fetchone()
 
         cursor.execute("SELECT COUNT(*) AS cnt FROM orders")

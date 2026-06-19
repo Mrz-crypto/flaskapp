@@ -2,7 +2,7 @@ import logging
 from flask import render_template, request, redirect, url_for, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.database import get_connection
-from app.controllers.auth import login_required
+from app.auth import login_required
 from app.controllers.ordercontroller import (
     get_all_orders,
     get_all_users,
@@ -55,10 +55,10 @@ def login():
             session["user_name"] = user["name"]
             session["user_role"] = user["role"]
             flash("Login successful.", "success")
-            logger.info(f"User logged in: {email} (ID: {user['id']})")
+            logger.info("User logged in: %s (ID: %s)", email, user["id"])
             return redirect(url_for("auth.dashboard"))
 
-        logger.warning(f"Failed login attempt for email: {email}")
+        logger.warning("Failed login attempt for email: %s", email)
         flash("Invalid email or password.", "error")
 
     return render_template("login.html")
@@ -84,7 +84,7 @@ def register():
 
         if len(password) < 6:
             flash("Password must be at least 6 characters.", "error")
-            logger.warning(f"Registration attempt with weak password for: {email}")
+            logger.warning("Registration attempt with weak password for: %s", email)
             return render_template("register.html")
 
         conn = get_connection()
@@ -99,7 +99,7 @@ def register():
             flash("Email already registered.", "error")
             cursor.close()
             conn.close()
-            logger.warning(f"Registration attempt with existing email: {email}")
+            logger.warning("Registration attempt with existing email: %s", email)
             return render_template("register.html")
 
         hashed_password = generate_password_hash(password)
@@ -111,7 +111,7 @@ def register():
         cursor.close()
         conn.close()
         flash("Registration successful. Please log in.", "success")
-        logger.info(f"New user registered: {email}")
+        logger.info("New user registered: %s", email)
         return redirect(url_for("auth.login"))
 
     return render_template("register.html")
@@ -202,5 +202,5 @@ def logout():
     user_name = session.get("user_name", "Unknown")
     session.clear()
     flash("You have been logged out.", "success")
-    logger.info(f"User logged out: {user_name}")
+    logger.info("User logged out: %s", user_name)
     return redirect(url_for("auth.login"))
