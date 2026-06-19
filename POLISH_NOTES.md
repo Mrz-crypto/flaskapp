@@ -39,3 +39,4 @@
 - 37. Documented the database creation step.
 - 38. Documented the development verification commands.
 - 39. Recorded the test fixture used for auth redirect coverage.
+- 40. Noted that template behavior was left unchanged.
