@@ -11,3 +11,4 @@
 - 09. Captured the passing auth redirect test result.
 - 10. Documented the environment-variable configuration path.
 - 11. Noted the MySQL database name expected by local setup.
+- 12. Recorded that order statuses remain pending and shipped.
