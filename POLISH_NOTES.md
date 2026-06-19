@@ -24,3 +24,4 @@
 - 22. Captured the MySQL table indexes included in setup SQL.
 - 23. Documented the users table fields used by the app.
 - 24. Documented the orders table fields used by the app.
+- 25. Recorded the delete order authorization check.
