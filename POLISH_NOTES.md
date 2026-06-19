@@ -20,3 +20,4 @@
 - 18. Documented route coverage for order API reads.
 - 19. Documented route coverage for order API writes.
 - 20. Recorded the production reminder to rotate default credentials.
+- 21. Noted that sensitive values belong in environment variables.
