@@ -13,3 +13,4 @@
 - 11. Noted the MySQL database name expected by local setup.
 - 12. Recorded that order statuses remain pending and shipped.
 - 13. Documented that no new runtime language was introduced.
+- 14. Noted that Flask remains the only web framework in use.
