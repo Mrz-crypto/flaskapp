@@ -47,3 +47,4 @@
 - 45. Documented the order quantity validation expectation.
 - 46. Documented the item name validation expectation.
 - 47. Captured the final polish scope before push.
+- 48. Recorded the GitHub publish preparation step.
