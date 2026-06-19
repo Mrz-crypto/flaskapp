@@ -8,3 +8,4 @@
 - 06. Noted that README examples now use plain ASCII characters.
 - 07. Recorded the pytest file naming cleanup for test discovery.
 - 08. Captured the compile check used before publishing changes.
+- 09. Captured the passing auth redirect test result.
