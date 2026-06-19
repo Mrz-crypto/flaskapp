@@ -26,3 +26,4 @@
 - 24. Documented the orders table fields used by the app.
 - 25. Recorded the delete order authorization check.
 - 26. Recorded the update order authorization check.
+- 27. Recorded the admin user edit dashboard flow.
