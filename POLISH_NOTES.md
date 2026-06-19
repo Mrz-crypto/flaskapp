@@ -36,3 +36,4 @@
 - 34. Noted that old corrupted README characters were removed.
 - 35. Documented the local run command for the Flask server.
 - 36. Documented the dependency install command.
+- 37. Documented the database creation step.
