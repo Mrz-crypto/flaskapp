@@ -37,3 +37,4 @@
 - 35. Documented the local run command for the Flask server.
 - 36. Documented the dependency install command.
 - 37. Documented the database creation step.
+- 38. Documented the development verification commands.
