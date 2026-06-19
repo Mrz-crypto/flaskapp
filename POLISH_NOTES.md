@@ -16,3 +16,4 @@
 - 14. Noted that Flask remains the only web framework in use.
 - 15. Captured that app behavior was kept stable during polish.
 - 16. Documented route coverage for login and registration.
+- 17. Documented route coverage for dashboard updates.
