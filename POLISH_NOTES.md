@@ -42,3 +42,4 @@
 - 40. Noted that template behavior was left unchanged.
 - 41. Noted that CSS behavior was left unchanged.
 - 42. Recorded that no frontend framework was added.
+- 43. Recorded that no database migration framework was added.
