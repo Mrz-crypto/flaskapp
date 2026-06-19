@@ -23,3 +23,4 @@
 - 21. Noted that sensitive values belong in environment variables.
 - 22. Captured the MySQL table indexes included in setup SQL.
 - 23. Documented the users table fields used by the app.
+- 24. Documented the orders table fields used by the app.
