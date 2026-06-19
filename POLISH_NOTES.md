@@ -32,3 +32,4 @@
 - 30. Documented the login validation boundaries.
 - 31. Captured the logging cleanup for auth actions.
 - 32. Captured the logging cleanup for database setup.
+- 33. Captured the logging cleanup for app error handlers.
