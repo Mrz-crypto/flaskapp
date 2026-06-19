@@ -43,3 +43,4 @@
 - 41. Noted that CSS behavior was left unchanged.
 - 42. Recorded that no frontend framework was added.
 - 43. Recorded that no database migration framework was added.
+- 44. Documented the role names accepted by the app.
