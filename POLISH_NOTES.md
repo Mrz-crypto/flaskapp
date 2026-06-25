@@ -97,3 +97,4 @@
 - 43. 2026-06-25: Confirmed the real app factory registers eleven routes.
 - 44. 2026-06-25: Confirmed database initialization succeeds with the new dependency.
 - 45. 2026-06-25: Confirmed the branch has a clean ignored-file policy.
+- 46. 2026-06-25: Recorded that behavior changes were kept conservative.
