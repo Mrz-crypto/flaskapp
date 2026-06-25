@@ -60,3 +60,4 @@
 - 06. 2026-06-25: Improved auth controller flow with smaller helper functions.
 - 07. 2026-06-25: Kept login failure messaging clean when the database is unavailable.
 - 08. 2026-06-25: Normalized session setup behind a focused helper.
+- 09. 2026-06-25: Added explicit handling for unsupported dashboard actions.
