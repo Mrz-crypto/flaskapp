@@ -88,3 +88,4 @@
 - 34. 2026-06-25: Upgraded CSS tokens for color, spacing, and shadows.
 - 35. 2026-06-25: Added sticky top navigation styling.
 - 36. 2026-06-25: Added consistent input focus states.
+- 37. 2026-06-25: Added shared panel, stat card, and auth card styling.
