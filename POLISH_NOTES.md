@@ -86,3 +86,4 @@
 - 32. 2026-06-25: Improved dashboard summary semantics with an aria label.
 - 33. 2026-06-25: Tightened dashboard table labels and action text.
 - 34. 2026-06-25: Upgraded CSS tokens for color, spacing, and shadows.
+- 35. 2026-06-25: Added sticky top navigation styling.
