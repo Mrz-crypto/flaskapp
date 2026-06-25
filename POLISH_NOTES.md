@@ -74,3 +74,4 @@
 - 20. 2026-06-25: Added contribution guidance for shared cleanup helpers.
 - 21. 2026-06-25: Added stale test filename ignore coverage.
 - 22. 2026-06-25: Cleaned app factory formatting with named error arguments.
+- 23. 2026-06-25: Reformatted the legacy auth helper for consistency.
