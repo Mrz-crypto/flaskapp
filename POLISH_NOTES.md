@@ -76,3 +76,4 @@
 - 22. 2026-06-25: Cleaned app factory formatting with named error arguments.
 - 23. 2026-06-25: Reformatted the legacy auth helper for consistency.
 - 24. 2026-06-25: Updated the base layout title and semantic main wrapper.
+- 25. 2026-06-25: Corrected the login page demo admin email.
