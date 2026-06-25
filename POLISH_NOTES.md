@@ -87,3 +87,4 @@
 - 33. 2026-06-25: Tightened dashboard table labels and action text.
 - 34. 2026-06-25: Upgraded CSS tokens for color, spacing, and shadows.
 - 35. 2026-06-25: Added sticky top navigation styling.
+- 36. 2026-06-25: Added consistent input focus states.
