@@ -91,3 +91,4 @@
 - 37. 2026-06-25: Added shared panel, stat card, and auth card styling.
 - 38. 2026-06-25: Improved flash message colors and borders.
 - 39. 2026-06-25: Improved mobile layout behavior for dashboard panels.
+- 40. 2026-06-25: Kept the stack to Flask, Python, Jinja, HTML, and CSS.
