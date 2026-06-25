@@ -64,3 +64,4 @@
 - 10. 2026-06-25: Expanded auth guard tests from one case to five cases.
 - 11. 2026-06-25: Covered regular-user redirects away from admin-only views.
 - 12. 2026-06-25: Covered admin access to admin-only views.
+- 13. 2026-06-25: Covered logged-in access to protected routes.
