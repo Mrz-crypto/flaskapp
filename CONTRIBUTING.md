@@ -4,8 +4,9 @@
 
 - Follow PEP 8 conventions
 - Use meaningful variable names
-- Add docstrings for functions
 - Keep functions focused and single-purpose
+- Prefer shared helpers over repeated cleanup code
+- Keep templates readable and accessible
 
 ## Testing
 
@@ -14,6 +15,7 @@ Before submitting changes:
 2. Verify database operations
 3. Check error handling
 4. Test with different user roles
+5. Run `python -m pytest tests`
 
 ## Security Review Checklist
 
@@ -31,6 +33,7 @@ Use clear, descriptive commit messages:
 - `fix: Correct order status update logic`
 - `docs: Update README with setup instructions`
 - `refactor: Simplify database connection logic`
+- `test: Cover admin access guard`
 
 ## Pull Requests
 

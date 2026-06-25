@@ -5,13 +5,14 @@
 {% block content %}
 <section class="dashboard-header">
     <div>
+        <p class="eyebrow">Order workspace</p>
         <h1>Dashboard</h1>
         <p class="subtitle">Welcome back, {{ user_name }}.</p>
     </div>
     <span class="role-badge role-{{ user_role }}">{{ user_role|capitalize }}</span>
 </section>
 
-<section class="stats-row">
+<section class="stats-row" aria-label="Order summary">
     <div class="stat-card">
         <span class="stat-label">Total orders</span>
         <span class="stat-value">{{ orders|length }}</span>
@@ -28,7 +29,10 @@
 
 {% if is_admin %}
 <section class="panel">
-    <h2>All users - view &amp; update</h2>
+    <div class="section-heading">
+        <h2>Users</h2>
+        <span>{{ users|length }} account{% if users|length != 1 %}s{% endif %}</span>
+    </div>
     {% if users %}
     <div class="table-wrap">
         <table class="orders-table">
@@ -38,28 +42,32 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Role</th>
-                    <th></th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 {% for u in users %}
                 <tr>
                     <td>#{{ u.id }}</td>
-                    <td colspan="4">
-                        <form method="post" class="inline-edit-form">
-                            <input type="hidden" name="action" value="update_user">
-                            <input type="hidden" name="user_id" value="{{ u.id }}">
-                            <div class="inline-fields">
-                                <input type="text" name="name" value="{{ u.name }}" required aria-label="Name for user {{ u.id }}">
-                                <input type="email" name="email" value="{{ u.email }}" required aria-label="Email for user {{ u.id }}">
-                                <select name="role" aria-label="Role for user {{ u.id }}">
-                                    <option value="user" {% if u.role == 'user' %}selected{% endif %}>User</option>
-                                    <option value="admin" {% if u.role == 'admin' %}selected{% endif %}>Admin</option>
-                                </select>
-                                <button type="submit" class="btn-small">Save user</button>
-                            </div>
-                        </form>
-                    </td>
+                    <form method="post">
+                        <input type="hidden" name="action" value="update_user">
+                        <input type="hidden" name="user_id" value="{{ u.id }}">
+                        <td>
+                            <input type="text" name="name" value="{{ u.name }}" required aria-label="Name for user {{ u.id }}">
+                        </td>
+                        <td>
+                            <input type="email" name="email" value="{{ u.email }}" required aria-label="Email for user {{ u.id }}">
+                        </td>
+                        <td>
+                            <select name="role" aria-label="Role for user {{ u.id }}">
+                                <option value="user" {% if u.role == 'user' %}selected{% endif %}>User</option>
+                                <option value="admin" {% if u.role == 'admin' %}selected{% endif %}>Admin</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button type="submit" class="btn-small">Save</button>
+                        </td>
+                    </form>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -72,7 +80,10 @@
 {% endif %}
 
 <section class="panel">
-    <h2>{% if is_admin %}Add order for a customer{% else %}Add my order{% endif %}</h2>
+    <div class="section-heading">
+        <h2>{% if is_admin %}Add order{% else %}Add my order{% endif %}</h2>
+        <span>{% if is_admin %}Assign to a customer{% else %}Create a new request{% endif %}</span>
+    </div>
     <form method="post" class="order-form">
         <input type="hidden" name="action" value="add_order">
         {% if is_admin and users %}
@@ -100,7 +111,10 @@
 </section>
 
 <section class="panel">
-    <h2>{% if is_admin %}All customer orders{% else %}My orders{% endif %}</h2>
+    <div class="section-heading">
+        <h2>{% if is_admin %}Customer orders{% else %}My orders{% endif %}</h2>
+        <span>{{ orders|length }} visible</span>
+    </div>
     {% if orders %}
     <div class="table-wrap">
         <table class="orders-table">
@@ -111,7 +125,7 @@
                     <th>Item</th>
                     <th>Qty</th>
                     <th>Status</th>
-                    <th>Actions</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -124,21 +138,25 @@
                         <span class="muted">{{ order.user_email }}</span>
                     </td>
                     {% endif %}
-                    <td colspan="4">
-                        <form method="post" class="inline-edit-form">
-                            <input type="hidden" name="action" value="update_order">
-                            <input type="hidden" name="order_id" value="{{ order.id }}">
-                            <div class="inline-fields">
-                                <input type="text" name="item" value="{{ order.item }}" required aria-label="Item for order {{ order.id }}">
-                                <input type="number" name="quantity" value="{{ order.quantity }}" min="1" required aria-label="Quantity for order {{ order.id }}">
-                                <select name="status" aria-label="Status for order {{ order.id }}">
-                                    <option value="pending" {% if order.status == 'pending' %}selected{% endif %}>Pending</option>
-                                    <option value="shipped" {% if order.status == 'shipped' %}selected{% endif %}>Shipped</option>
-                                </select>
-                                <button type="submit" class="btn-small">Save order</button>
-                            </div>
-                        </form>
-                    </td>
+                    <form method="post">
+                        <input type="hidden" name="action" value="update_order">
+                        <input type="hidden" name="order_id" value="{{ order.id }}">
+                        <td>
+                            <input type="text" name="item" value="{{ order.item }}" required aria-label="Item for order {{ order.id }}">
+                        </td>
+                        <td>
+                            <input type="number" name="quantity" value="{{ order.quantity }}" min="1" required aria-label="Quantity for order {{ order.id }}">
+                        </td>
+                        <td>
+                            <select name="status" aria-label="Status for order {{ order.id }}">
+                                <option value="pending" {% if order.status == 'pending' %}selected{% endif %}>Pending</option>
+                                <option value="shipped" {% if order.status == 'shipped' %}selected{% endif %}>Shipped</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button type="submit" class="btn-small">Save</button>
+                        </td>
+                    </form>
                 </tr>
                 {% endfor %}
             </tbody>

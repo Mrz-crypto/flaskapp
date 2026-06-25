@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}App{% endblock %}</title>
+    <title>{% block title %}Order Manager{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <nav>
+    <nav class="topbar">
         <a href="{{ url_for('auth.home') }}" class="brand">Order Manager</a>
         <div class="nav-links">
             {% if session.get('user_id') %}
@@ -21,7 +21,7 @@
         </div>
     </nav>
 
-    <div class="container">
+    <main class="container">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 <ul class="flash-messages">
@@ -33,10 +33,10 @@
         {% endwith %}
 
         {% block content %}{% endblock %}
-    </div>
+    </main>
 
     <footer>
-        <p>&copy; {{ 2026 }} Order Manager</p>
+        <p>&copy; 2026 Order Manager</p>
     </footer>
 </body>
 </html>

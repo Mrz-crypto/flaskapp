@@ -9,6 +9,7 @@ def login_required(f):
             flash("Please log in first.", "warning")
             return redirect(url_for("auth.login"))
         return f(*args, **kwargs)
+
     return decorated_function
 
 
@@ -22,4 +23,5 @@ def admin_required(f):
             flash("Admin access required.", "error")
             return redirect(url_for("auth.dashboard"))
         return f(*args, **kwargs)
+
     return decorated_function

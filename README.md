@@ -1,6 +1,6 @@
 # Flask Order Management Application
 
-A Flask web application for user authentication, role-based dashboards, and basic order management backed by MySQL.
+A polished Flask web application for user authentication, role-based dashboards, and basic order management backed by MySQL.
 
 ## Features
 
@@ -12,12 +12,15 @@ A Flask web application for user authentication, role-based dashboards, and basi
 - Error pages for 403, 404, and 500 responses
 - Environment-based configuration
 - Console logging for key app events
+- Responsive dashboard and authentication screens
+- Lightweight pytest coverage for access-control helpers
 
 ## Requirements
 
 - Python 3.8+
 - MySQL Server
 - pip
+- MySQL accounts using `caching_sha2_password` are supported through the `cryptography` dependency
 
 ## Setup
 
@@ -122,8 +125,16 @@ Settings are read from environment variables:
 
 ```bash
 python -m compileall app run.py config.py
-pytest
+python -m pytest tests
 ```
+
+## Local Workflow
+
+1. Update `.env` with local database credentials.
+2. Start MySQL and make sure the `blackeye` database exists.
+3. Run `python run.py`.
+4. Visit `http://localhost:5000/login`.
+5. Sign in with the default admin account, then rotate that password.
 
 ## Production Notes
 
@@ -133,3 +144,5 @@ pytest
 - Use HTTPS behind a production web server
 - Back up the MySQL database regularly
 - Keep credentials in environment variables, not source files
+- Review logs before each deploy
+- Run the test suite before pushing changes

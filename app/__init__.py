@@ -1,6 +1,7 @@
+import logging
+
 from flask import Flask, render_template
 
-import logging
 import config
 from app.database import create_tables
 
@@ -30,18 +31,18 @@ def create_app():
     logger.info("Blueprints registered successfully")
 
     @app.errorhandler(403)
-    def forbidden(e):
-        logger.warning("403 Forbidden error: %s", e)
+    def forbidden(error):
+        logger.warning("403 Forbidden error: %s", error)
         return render_template("403.html"), 403
 
     @app.errorhandler(404)
-    def page_not_found(e):
-        logger.warning("404 Not Found error: %s", e)
+    def page_not_found(error):
+        logger.warning("404 Not Found error: %s", error)
         return render_template("404.html"), 404
 
     @app.errorhandler(500)
-    def internal_error(e):
-        logger.error("500 Internal Server Error: %s", e)
+    def internal_error(error):
+        logger.error("500 Internal Server Error: %s", error)
         return render_template("500.html"), 500
 
     return app
