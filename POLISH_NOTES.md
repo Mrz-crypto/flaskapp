@@ -96,3 +96,4 @@
 - 42. 2026-06-25: Confirmed pytest passes after the polish pass.
 - 43. 2026-06-25: Confirmed the real app factory registers eleven routes.
 - 44. 2026-06-25: Confirmed database initialization succeeds with the new dependency.
+- 45. 2026-06-25: Confirmed the branch has a clean ignored-file policy.
