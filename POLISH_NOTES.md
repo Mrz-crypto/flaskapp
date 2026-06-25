@@ -57,3 +57,4 @@
 - 03. 2026-06-25: Reworked database initialization into focused seed helpers.
 - 04. 2026-06-25: Added rollback behavior for failed database setup.
 - 05. 2026-06-25: Pinned cryptography for MySQL caching_sha2_password support.
+- 06. 2026-06-25: Improved auth controller flow with smaller helper functions.
