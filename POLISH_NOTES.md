@@ -73,3 +73,4 @@
 - 19. 2026-06-25: Added manual QA steps to the testing guide.
 - 20. 2026-06-25: Added contribution guidance for shared cleanup helpers.
 - 21. 2026-06-25: Added stale test filename ignore coverage.
+- 22. 2026-06-25: Cleaned app factory formatting with named error arguments.
