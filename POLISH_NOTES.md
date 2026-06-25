@@ -78,3 +78,4 @@
 - 24. 2026-06-25: Updated the base layout title and semantic main wrapper.
 - 25. 2026-06-25: Corrected the login page demo admin email.
 - 26. 2026-06-25: Wrapped login content in a focused auth card.
+- 27. 2026-06-25: Wrapped registration content in the same auth card pattern.
