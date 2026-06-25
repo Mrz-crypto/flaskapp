@@ -80,3 +80,4 @@
 - 26. 2026-06-25: Wrapped login content in a focused auth card.
 - 27. 2026-06-25: Wrapped registration content in the same auth card pattern.
 - 28. 2026-06-25: Polished the 403 page with shared error-card styling.
+- 29. 2026-06-25: Polished the 404 page with shared error-card styling.
