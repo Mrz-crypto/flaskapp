@@ -94,3 +94,4 @@
 - 40. 2026-06-25: Kept the stack to Flask, Python, Jinja, HTML, and CSS.
 - 41. 2026-06-25: Confirmed compile checks after the polish pass.
 - 42. 2026-06-25: Confirmed pytest passes after the polish pass.
+- 43. 2026-06-25: Confirmed the real app factory registers eleven routes.
