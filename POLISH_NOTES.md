@@ -67,3 +67,4 @@
 - 13. 2026-06-25: Covered logged-in access to protected routes.
 - 14. 2026-06-25: Covered clear-session behavior in tests.
 - 15. 2026-06-25: Updated README verification commands to use pytest explicitly.
+- 16. 2026-06-25: Documented the local run workflow in README.
