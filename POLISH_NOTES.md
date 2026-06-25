@@ -69,3 +69,4 @@
 - 15. 2026-06-25: Updated README verification commands to use pytest explicitly.
 - 16. 2026-06-25: Documented the local run workflow in README.
 - 17. 2026-06-25: Documented the MySQL auth dependency in README.
+- 18. 2026-06-25: Replaced the testing guide with the current project workflow.
