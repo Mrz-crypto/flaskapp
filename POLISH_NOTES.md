@@ -81,3 +81,4 @@
 - 27. 2026-06-25: Wrapped registration content in the same auth card pattern.
 - 28. 2026-06-25: Polished the 403 page with shared error-card styling.
 - 29. 2026-06-25: Polished the 404 page with shared error-card styling.
+- 30. 2026-06-25: Polished the 500 page with shared error-card styling.
