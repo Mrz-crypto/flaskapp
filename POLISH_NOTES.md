@@ -49,3 +49,7 @@
 - 47. Captured the final polish scope before push.
 - 48. Recorded the GitHub publish preparation step.
 - 49. Marked the 50-commit polish series complete.
+
+## 2026-06-25 polish series
+
+- 01. 2026-06-25: Polished the order controller around shared auth helpers and cleanup paths.
