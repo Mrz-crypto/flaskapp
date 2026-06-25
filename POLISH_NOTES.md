@@ -62,3 +62,4 @@
 - 08. 2026-06-25: Normalized session setup behind a focused helper.
 - 09. 2026-06-25: Added explicit handling for unsupported dashboard actions.
 - 10. 2026-06-25: Expanded auth guard tests from one case to five cases.
+- 11. 2026-06-25: Covered regular-user redirects away from admin-only views.
