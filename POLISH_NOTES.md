@@ -54,3 +54,4 @@
 
 - 01. 2026-06-25: Polished the order controller around shared auth helpers and cleanup paths.
 - 02. 2026-06-25: Preserved admin order creation fallback behavior while improving readability.
+- 03. 2026-06-25: Reworked database initialization into focused seed helpers.
