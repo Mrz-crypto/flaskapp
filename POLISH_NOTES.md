@@ -71,3 +71,4 @@
 - 17. 2026-06-25: Documented the MySQL auth dependency in README.
 - 18. 2026-06-25: Replaced the testing guide with the current project workflow.
 - 19. 2026-06-25: Added manual QA steps to the testing guide.
+- 20. 2026-06-25: Added contribution guidance for shared cleanup helpers.
